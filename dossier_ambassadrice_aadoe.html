@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier Ambassadrice — AADOE 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A0A12;
+  --dark2: #12121E;
+  --dark3: #1A1A2E;
+  --or: #C9A84C;
+  --or2: #E2C060;
+  --or-pale: rgba(201,168,76,0.08);
+  --or-border: rgba(201,168,76,0.2);
+  --vert: #3A5441;
+  --white: #FFFFFF;
+  --text: rgba(255,255,255,0.85);
+  --muted: rgba(255,255,255,0.45);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--or-border); border-radius: 2px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(180deg, rgba(10,10,18,0.98) 0%, transparent 100%);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--or); letter-spacing: 0.2em;
+}
+.nav-cta {
+  background: transparent;
+  border: 1px solid var(--or);
+  color: var(--or);
+  padding: 10px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+.nav-cta:hover {
+  background: var(--or); color: var(--dark);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 20% 80%, rgba(58,84,65,0.08) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--or-border);
+  padding: 7px 20px; border-radius: 100px;
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--or); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero-badge-text { font-size: 0.7rem; letter-spacing: 0.25em; color: var(--or); text-transform: uppercase; }
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 300; line-height: 1;
+  color: var(--white); margin-bottom: 12px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-title em { color: var(--or); font-style: italic; font-weight: 600; }
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 300; font-style: italic;
+  color: var(--muted); margin-bottom: 48px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-divider {
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.hero-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--or)); }
+.hero-line.r { background: linear-gradient(90deg, var(--or), transparent); }
+.hero-diamond { width: 8px; height: 8px; background: var(--or); transform: rotate(45deg); }
+
+.hero-desc {
+  max-width: 560px; font-size: 1rem;
+  color: var(--muted); line-height: 1.8;
+  margin-bottom: 56px;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+.hero-desc strong { color: var(--or); font-weight: 500; }
+
+.hero-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--or), var(--or2));
+  color: var(--dark);
+  padding: 18px 56px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+.hero-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(201,168,76,0.45); }
+
+.hero-scroll {
+  position: absolute; bottom: 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  animation: fadeUp 0.8s 0.8s ease both;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, var(--or), transparent);
+  animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTIONS ── */
+section { padding: 100px 24px; }
+.container { max-width: 900px; margin: 0 auto; }
+.container-wide { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-size: 0.65rem; letter-spacing: 0.3em; color: var(--or);
+  text-transform: uppercase; font-weight: 500;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: ''; width: 24px; height: 1px; background: var(--or);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300; color: var(--white);
+  line-height: 1.15; margin-bottom: 24px;
+}
+.section-title em { color: var(--or); font-style: italic; }
+.section-text {
+  font-size: 0.95rem; color: var(--muted);
+  line-height: 1.9; max-width: 620px;
+}
+.section-text strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+/* ── VISION ── */
+.vision { background: var(--dark2); }
+.vision-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.vision-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-style: italic;
+  color: var(--or); line-height: 1.5;
+  border-left: 2px solid var(--or);
+  padding-left: 28px; margin-top: 40px;
+}
+
+/* ── ROLE ── */
+.role-cards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 60px;
+}
+.role-card {
+  background: var(--dark2);
+  padding: 40px 36px;
+  border: 1px solid rgba(201,168,76,0.1);
+  transition: border-color 0.3s ease;
+}
+.role-card:hover { border-color: rgba(201,168,76,0.3); }
+.role-card-icon { font-size: 2rem; margin-bottom: 20px; }
+.role-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; color: var(--or);
+  margin-bottom: 16px; font-weight: 600;
+}
+.role-card-list { list-style: none; }
+.role-card-list li {
+  font-size: 0.85rem; color: var(--muted);
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+.role-card-list li::before {
+  content: '›'; color: var(--or); font-size: 1rem; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── PARTENARIAT ── */
+.partenariat { background: var(--dark2); }
+.split-box {
+  background: var(--dark3);
+  border: 1px solid var(--or-border);
+  padding: 56px; margin-top: 56px;
+}
+.split-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--or);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 32px; text-align: center;
+}
+.split-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 40px; align-items: start; }
+.split-divider { background: var(--or-border); }
+.split-side-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; color: var(--white);
+  margin-bottom: 20px; font-weight: 600;
+}
+.split-side-title span { color: var(--or); }
+.split-list { list-style: none; }
+.split-list li {
+  font-size: 0.85rem; color: var(--muted);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; gap: 10px; line-height: 1.5;
+}
+.split-list li::before { content: '◆'; color: var(--or); font-size: 0.5rem; flex-shrink: 0; margin-top: 5px; }
+
+/* ── CALCUL ── */
+.calc-box {
+  margin-top: 48px;
+  border: 1px solid var(--or-border);
+  overflow: hidden;
+}
+.calc-header {
+  background: var(--or);
+  padding: 16px 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--dark); letter-spacing: 0.1em; text-transform: uppercase;
+  text-align: center;
+}
+.calc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+  font-size: 0.88rem;
+}
+.calc-row:last-child { border-bottom: none; }
+.calc-row.total {
+  background: var(--or-pale);
+  font-weight: 600; color: var(--white);
+  font-size: 1rem;
+}
+.calc-row.result {
+  background: rgba(201,168,76,0.15);
+  font-weight: 700; color: var(--or);
+  font-size: 1.1rem; font-family: 'Cormorant Garamond', serif;
+}
+.calc-label { color: var(--muted); }
+.calc-value { color: var(--white); font-weight: 500; }
+
+/* ── AVANTAGES ── */
+.avantages-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; margin-top: 60px;
+  border: 1px solid var(--or-border);
+}
+.avantage-card {
+  background: var(--dark2);
+  padding: 36px 28px; text-align: center;
+  transition: background 0.3s ease;
+}
+.avantage-card:hover { background: var(--dark3); }
+.avantage-icon { font-size: 2.2rem; margin-bottom: 16px; }
+.avantage-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--or);
+  margin-bottom: 10px; font-weight: 600;
+}
+.avantage-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+/* ── PROFIL ── */
+.profil { background: var(--dark2); }
+.profil-list {
+  margin-top: 48px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.profil-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 24px;
+  border: 1px solid rgba(201,168,76,0.1);
+  transition: border-color 0.3s ease;
+}
+.profil-item:hover { border-color: rgba(201,168,76,0.3); }
+.profil-check {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(201,168,76,0.1); border: 1px solid var(--or);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--or); font-size: 0.7rem; font-weight: 700;
+}
+.profil-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.profil-text strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+/* ── CALENDRIER ── */
+.timeline { margin-top: 60px; position: relative; padding-left: 40px; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 0; top: 8px; bottom: 8px; width: 1px;
+  background: linear-gradient(180deg, var(--or), rgba(201,168,76,0.1));
+}
+.timeline-item {
+  position: relative; margin-bottom: 36px;
+  padding-left: 28px;
+}
+.timeline-dot {
+  position: absolute; left: -46px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--dark); border: 2px solid var(--or);
+}
+.timeline-date {
+  font-size: 0.7rem; letter-spacing: 0.2em;
+  color: var(--or); text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.timeline-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; color: var(--white);
+  font-weight: 600; margin-bottom: 4px;
+}
+.timeline-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+/* ── CTA FINAL ── */
+.cta-section {
+  background: var(--dark2);
+  text-align: center; padding: 120px 24px;
+  position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 700px 400px at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+.cta-section .section-label { justify-content: center; }
+.cta-section .section-label::before { display: none; }
+.cta-section .section-title { text-align: center; }
+.cta-section .section-text { margin: 0 auto 56px; text-align: center; }
+.cta-big {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--or), var(--or2));
+  color: var(--dark);
+  padding: 22px 72px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 40px rgba(201,168,76,0.35);
+  margin-bottom: 24px;
+  display: block; max-width: 400px; margin: 0 auto 20px;
+  text-align: center;
+}
+.cta-big:hover { transform: translateY(-4px); box-shadow: 0 14px 50px rgba(201,168,76,0.5); }
+.cta-note { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.1em; }
+
+/* ── FAQ ── */
+.faq-list { margin-top: 48px; }
+.faq-item {
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding: 24px 0;
+}
+.faq-q {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--white);
+  font-weight: 600; margin-bottom: 12px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.faq-q::before { content: 'Q.'; color: var(--or); flex-shrink: 0; }
+.faq-a {
+  font-size: 0.88rem; color: var(--muted);
+  line-height: 1.7; padding-left: 28px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 48px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--or); letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+.footer-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; }
+.footer-socials { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; }
+.footer-social { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.footer-social:hover { color: var(--or); }
+.footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .vision-grid { grid-template-columns: 1fr; gap: 40px; }
+  .role-cards { grid-template-columns: 1fr; }
+  .split-grid { grid-template-columns: 1fr; }
+  .split-divider { display: none; }
+  .avantages-grid { grid-template-columns: 1fr; }
+  .profil-list { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AADOE</div>
+  <a href="https://tcheyilashop-hash.github.io/aadoe-ambassadrices" class="nav-cta">Je candidate</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-text">Candidatures ouvertes · Édition 2027</span>
+    </div>
+    <h1 class="hero-title">Deviens<br><em>Ambassadrice</em><br>AADOE</h1>
+    <p class="hero-subtitle">Représente l'académie dans ton pays · Afrique Francophone</p>
+    <div class="hero-divider">
+      <div class="hero-line"></div>
+      <div class="hero-diamond"></div>
+      <div class="hero-line r"></div>
+    </div>
+    <p class="hero-desc">
+      L'AADOE recherche des <strong>femmes engagées</strong> pour co-organiser les sessions de formation en présentiel dans leur pays. Un vrai partenariat — tu investis, nous investissons, <strong>nous partageons les bénéfices à 50/50</strong>.
+    </p>
+    <a href="https://tcheyilashop-hash.github.io/aadoe-ambassadrices" class="hero-cta">Déposer ma candidature →</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Découvrir
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision">
+  <div class="container">
+    <div class="vision-grid">
+      <div>
+        <div class="section-label">Notre vision</div>
+        <h2 class="section-title">Professionnaliser<br>l'événementiel<br><em>africain</em></h2>
+        <p class="section-text">
+          L'AADOE est la <strong>première académie francophone d'Afrique</strong> dédiée à la professionnalisation des décorateurs et organisateurs d'événements. Fondée par Math, décoratrice et formatrice avec plus de 6 ans d'expérience entre la France et la Côte d'Ivoire.<br><br>
+          Notre méthode — la <strong>Méthode CÉLÈBRE™</strong> — forme les professionnelles aux outils digitaux, à la gestion d'entreprise et à l'excellence créative.
+        </p>
+      </div>
+      <div>
+        <div class="vision-quote">
+          "Mon ambition : qu'une décoratrice à Kinshasa, Dakar ou Douala ait accès aux mêmes outils et à la même crédibilité qu'à Paris."
+        </div>
+        <div style="margin-top:32px;padding:24px;border:1px solid var(--or-border);">
+          <div style="font-size:0.7rem;letter-spacing:0.2em;color:var(--or);text-transform:uppercase;margin-bottom:16px;">Notre ambition 2027</div>
+          <p style="font-size:0.88rem;color:var(--muted);line-height:1.7;">Une ambassadrice officielle dans chaque pays francophone d'Afrique — pour que la formation soit accessible partout, sans que les participantes aient à voyager.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÔLE -->
+<section>
+  <div class="container-wide">
+    <div style="text-align:center;max-width:600px;margin:0 auto;">
+      <div class="section-label" style="justify-content:center;"><span style="display:none"></span>Le rôle</div>
+      <h2 class="section-title" style="text-align:center;">Un vrai <em>partenariat</em>,<br>pas un emploi</h2>
+      <p class="section-text" style="margin:0 auto;">Pas de salariat, pas de commission, pas de charges. Vous êtes <strong>co-organisatrices</strong>. Chacune investit de son côté — chacune bénéficie des résultats.</p>
+    </div>
+    <div class="role-cards">
+      <div class="role-card">
+        <div class="role-card-icon">🌍</div>
+        <div class="role-card-title">L'Ambassadrice s'occupe de…</div>
+        <ul class="role-card-list">
+          <li>La promotion de la session dans son pays</li>
+          <li>Le recrutement et suivi des participantes locales</li>
+          <li>La logistique terrain (salle, accueil, matériel)</li>
+          <li>La représentation AADOE lors d'événements locaux</li>
+          <li>Les réunions mensuelles de coordination</li>
+          <li>Le reporting des inscriptions et paiements</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-card-icon">🎓</div>
+        <div class="role-card-title">Math s'occupe de…</div>
+        <ul class="role-card-list">
+          <li>Tout le contenu pédagogique (modules, supports, corrections)</li>
+          <li>Toutes les formations en ligne et en présentiel</li>
+          <li>La stratégie globale et la communication internationale</li>
+          <li>Son déplacement dans le pays de l'Ambassadrice</li>
+          <li>Les certificats et kits des participantes</li>
+          <li>L'accompagnement de l'Ambassadrice</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENARIAT & CALCUL -->
+<section class="partenariat">
+  <div class="container">
+    <div class="section-label">Le modèle économique</div>
+    <h2 class="section-title">On investit<br>toutes les deux.<br><em>On partage 50/50.</em></h2>
+    <p class="section-text">Plus tu recrutes de participantes, plus ton gain est important. Il n'y a pas de plafond — c'est ton énergie et ton réseau qui déterminent ton revenu.</p>
+
+    <div class="split-box">
+      <div class="split-title">Qui investit quoi ?</div>
+      <div class="split-grid">
+        <div>
+          <div class="split-side-title">L'Ambassadrice <span>investit</span></div>
+          <ul class="split-list">
+            <li>Son temps — 5 à 10h/semaine pendant 3 mois</li>
+            <li>La location de la salle de formation (5 jours)</li>
+            <li>Les déplacements locaux terrain</li>
+            <li>La communication locale (flyers, pubs)</li>
+            <li>Son réseau — son atout principal</li>
+          </ul>
+        </div>
+        <div class="split-divider"></div>
+        <div>
+          <div class="split-side-title">Math <span>investit</span></div>
+          <ul class="split-list">
+            <li>Le contenu pédagogique complet</li>
+            <li>Billet d'avion + hébergement pour la session</li>
+            <li>La communication internationale AADOE</li>
+            <li>Les certificats et kits des participantes</li>
+            <li>6 ans d'expertise et la Méthode CÉLÈBRE™</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <div class="calc-header">Exemple concret — 20 participantes à 300€</div>
+      <div class="calc-row"><span class="calc-label">Recettes totales</span><span class="calc-value">6 000 €</span></div>
+      <div class="calc-row"><span class="calc-label">Dépenses Ambassadrice (salle, comm locale)</span><span class="calc-value" style="color:#e88;">— 500 €</span></div>
+      <div class="calc-row"><span class="calc-label">Dépenses AADOE (voyage, kits, comm)</span><span class="calc-value" style="color:#e88;">— 800 €</span></div>
+      <div class="calc-row total"><span class="calc-label">Bénéfice net à partager</span><span class="calc-value">4 700 €</span></div>
+      <div class="calc-row result"><span>Ta part (50%)</span><span>2 350 €</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVANTAGES -->
+<section>
+  <div class="container-wide">
+    <div style="text-align:center;max-width:500px;margin:0 auto 0;">
+      <div class="section-label" style="justify-content:center;">Ce que tu gagnes</div>
+      <h2 class="section-title" style="text-align:center;">Au-delà de<br>l'<em>argent</em></h2>
+    </div>
+    <div class="avantages-grid">
+      <div class="avantage-card">
+        <div class="avantage-icon">👑</div>
+        <div class="avantage-title">Titre Officiel</div>
+        <p class="avantage-desc">Ambassadrice AADOE — [Ton Pays]. Mentionné sur tous les supports de communication de l'académie.</p>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">🌐</div>
+        <div class="avantage-title">Réseau International</div>
+        <p class="avantage-desc">Accès au réseau professionnel AADOE en Afrique francophone et en France, incluant les membres de la diaspora.</p>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">🎓</div>
+        <div class="avantage-title">Formation Offerte</div>
+        <p class="avantage-desc">La formation complète Méthode CÉLÈBRE™ t'est offerte dans le cadre du partenariat — une valeur de plusieurs centaines d'euros.</p>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">✨</div>
+        <div class="avantage-title">Club des Diplômées</div>
+        <p class="avantage-desc">Accès gratuit au club mensuel AADOE — ressources, Q&A avec Math, networking entre professionnelles.</p>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">📱</div>
+        <div class="avantage-title">Visibilité Digitale</div>
+        <p class="avantage-desc">Ton profil mis en avant sur les réseaux sociaux AADOE et dans toutes les communications de la session.</p>
+      </div>
+      <div class="avantage-card">
+        <div class="avantage-icon">🤝</div>
+        <div class="avantage-title">Accompagnement Perso</div>
+        <p class="avantage-desc">Suivi personnalisé par Math tout au long de la collaboration — tu n'es jamais seule face aux défis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIL -->
+<section class="profil">
+  <div class="container">
+    <div class="section-label">Qui peut candidater</div>
+    <h2 class="section-title">Le profil<br><em>idéal</em></h2>
+    <p class="section-text">Nous ne cherchons pas la candidate parfaite — nous cherchons la candidate <strong>sincèrement engagée</strong>.</p>
+    <div class="profil-list">
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>Basée dans le pays</strong> qu'elle souhaite représenter</p></div>
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>Expérience en événementiel</strong> ou décoration, même débutante motivée</p></div>
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>Disponible</strong> — sans autre activité principale qui l'absorbe totalement</p></div>
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>À l'aise avec le digital</strong> ou prête à apprendre rapidement</p></div>
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>Un réseau local</strong> dans le secteur ou capable d'en construire un</p></div>
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>Croit sincèrement</strong> en la professionnalisation de l'événementiel africain</p></div>
+      <div class="profil-item"><div class="profil-check">✓</div><p class="profil-text"><strong>Bonne présentation</strong> et sens aigu du relationnel</p></div>
+      <div class="profil-item"><div class="profil-check">★</div><p class="profil-text"><strong>Diplômée AADOE</strong> — priorité dans le processus de sélection</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDRIER -->
+<section>
+  <div class="container">
+    <div class="section-label">Calendrier</div>
+    <h2 class="section-title">Les étapes<br>vers <em>2027</em></h2>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Avril 2026</div><div class="timeline-title">Ouverture des candidatures</div><div class="timeline-desc">Lancement officiel de l'appel à candidatures lors de la session Abidjan 2026.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Juin 2026</div><div class="timeline-title">Clôture des dossiers</div><div class="timeline-desc">Date limite pour déposer ta candidature complète.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Juillet 2026</div><div class="timeline-title">Entretiens de sélection</div><div class="timeline-desc">Entretien vidéo avec Math pour les candidates présélectionnées.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Août 2026</div><div class="timeline-title">Annonce des Ambassadrices</div><div class="timeline-desc">Les Ambassadrices retenues sont officiellement annoncées.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Sept — Déc 2026</div><div class="timeline-title">Préparation & Inscriptions</div><div class="timeline-desc">Collaboration active : contrat signé, lancement des inscriptions locales, préparation de la session.</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">1er semestre 2027</div><div class="timeline-title">Session en présentiel</div><div class="timeline-desc">5 jours de formation intensive dans ta ville avec Math.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--dark2);">
+  <div class="container">
+    <div class="section-label">Questions fréquentes</div>
+    <h2 class="section-title">Tu as des<br><em>questions ?</em></h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Puis-je candidater si je n'ai pas encore fait la formation AADOE ?</div><p class="faq-a">Oui, c'est possible si ton profil est solide et ta motivation sincère. La formation complète Méthode CÉLÈBRE™ te sera offerte dans le cadre du partenariat.</p></div>
+      <div class="faq-item"><div class="faq-q">Je gère déjà une agence événementielle. Puis-je aussi être Ambassadrice ?</div><p class="faq-a">Cela dépend de ta disponibilité réelle. Si ton agence est très active, le cumul sera difficile. Nous évaluons cela au cas par cas lors de l'entretien — sois honnête sur ton temps disponible.</p></div>
+      <div class="faq-item"><div class="faq-q">Y a-t-il un contrat ?</div><p class="faq-a">Oui. Un contrat de partenariat officiel est signé avant le début de la collaboration. Il détaille les investissements de chacune, les modalités de partage des bénéfices à 50/50 et les responsabilités.</p></div>
+      <div class="faq-item"><div class="faq-q">Que se passe-t-il si on n'atteint pas le nombre minimum de participantes ?</div><p class="faq-a">Nous travaillons ensemble dès le départ pour éviter cette situation. Si le minimum n'est pas atteint 6 semaines avant la session, nous discutons des options — report, format hybride, ou annulation sans pénalité pour l'Ambassadrice.</p></div>
+      <div class="faq-item"><div class="faq-q">Que se passe-t-il s'il n'y a pas de bénéfices ?</div><p class="faq-a">Si après déduction des dépenses de chacune il n'y a pas de bénéfice net, il n'y a rien à partager. Chacune assume ses propres dépenses. C'est pourquoi le recrutement des participantes est la priorité absolue dès le début.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <div class="section-label" style="justify-content:center;">Prête à te lancer ?</div>
+    <h2 class="section-title" style="text-align:center;">Le moment<br>c'est <em>maintenant.</em></h2>
+    <p class="section-text" style="margin:0 auto 56px;text-align:center;">Le formulaire prend 10 minutes. Ton dossier sera étudié sous 2 à 3 semaines. Si tu es retenue, tu seras contactée directement par WhatsApp pour un entretien avec Math.</p>
+    <a href="https://tcheyilashop-hash.github.io/aadoe-ambassadrices" class="cta-big">Je dépose ma candidature →</a>
+    <p class="cta-note" style="margin-top:20px;">Candidatures ouvertes jusqu'en juin 2026 · Places limitées par pays</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AADOE</div>
+  <div class="footer-sub">Académie Africaine des Décorateurs & Organisateurs d'Événements</div>
+  <div class="footer-socials">
+    <a href="#" class="footer-social">Instagram @AADOE2</a>
+    <a href="#" class="footer-social">TikTok @AADOE</a>
+    <a href="#" class="footer-social">contact@aadoe.africa</a>
+  </div>
+  <div class="footer-copy">© AADOE 2026 · Tous droits réservés</div>
+</footer>
+
+</body>
+</html>
